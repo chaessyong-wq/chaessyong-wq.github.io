@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>약동학(Pharmacokinetics) 소개</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --text: #e8eef5;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #34d399;
+      --border: #2d3a4d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", "Malgun Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 1.25rem 4rem;
+    }
+
+    header {
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    header .sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    nav {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    section {
+      padding: 2.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      color: var(--accent2);
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.25rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    p {
+      margin-bottom: 0.85rem;
+      color: var(--muted);
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.35rem;
+    }
+
+    .card strong {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin: 0.5rem 0 0 1.1rem;
+      color: var(--muted);
+    }
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+
+    .note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.1rem;
+      background: rgba(56, 189, 248, 0.08);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>약동학 <span style="color: var(--muted); font-weight: 400;">Pharmacokinetics, PK</span></h1>
+      <p class="sub">몸 안에서 약물이 어떻게 움직이는지를 다루는 학문입니다.</p>
+      <nav>
+        <a href="#what">약동학이란</a>
+        <a href="#adme">ADME</a>
+        <a href="#params">주요 개념</a>
+        <a href="#clinical">임상과의 연결</a>
+      </nav>
+    </header>
+
+    <section id="what">
+      <h2>약동학이란?</h2>
+      <p class="lead">
+        약동학은 약물이 투여된 뒤 <strong>흡수·분포·대사·배설</strong>을 거치며 혈중 농도가 시간에 따라 어떻게 변하는지를 수학적으로 설명하는 분야입니다.
+      </p>
+      <p>
+        약효(약물이 몸에 미치는 작용)를 다루는 <strong>약력학(Pharmacodynamics, PD)</strong>과 짝을 이루며, “얼마나·얼마나 오래 혈중에 남는가”를 이해하는 데 쓰입니다.
+      </p>
+    </section>
+
+    <section id="adme">
+      <h2>ADME — 약동학의 네 기둥</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <strong>A — Absorption (흡수)</strong>
+          경구·근육·피하 등 투여 경로에 따라 혈류로 들어오는 속도와 정도가 달라집니다.
+        </div>
+        <div class="card">
+          <strong>D — Distribution (분포)</strong>
+          혈액에서 조직으로 퍼지는 과정. 단백결합·지질 용해도 등이 영향을 줍니다.
+        </div>
+        <div class="card">
+          <strong>M — Metabolism (대사)</strong>
+          주로 간에서 효소에 의해 약물이 다른 물질로 변환됩니다 (예: CYP).
+        </div>
+        <div class="card">
+          <strong>E — Excretion (배설)</strong>
+          신장·담즙 등을 통해 몸 밖으로 제거되는 과정입니다.
+        </div>
+      </div>
+    </section>
+
+    <section id="params">
+      <h2>자주 쓰는 약동학 용어</h2>
+      <p>아래 개념들은 농도–시간 곡선을 요약하거나, 집단 약동학(popPK) 모델에서 파라미터로 다루기도 합니다.</p>
+      <div class="grid">
+        <div class="card">
+          <strong>반감기 (t<sub>½</sub>)</strong>
+          혈중 농도가 절반으로 줄어드는 데 걸리는 시간. 제거 속도와 관련됩니다.
+        </div>
+        <div class="card">
+          <strong>청소율 (Clearance, CL)</strong>
+          단위 시간에 혈액에서 완전히 제거되는 혈장 용적에 해당하는 양. “몸이 약을 얼마나 잘 지우는지”의 척도입니다.
+        </div>
+        <div class="card">
+          <strong>분포용적 (Volume of distribution, V)</strong>
+          농도를 기준으로 추정한 가상의 체액 부피. 조직으로 얼마나 퍼지는지와 연관됩니다.
+        </div>
+        <div class="card">
+          <strong>생체이용률 (Bioavailability, F)</strong>
+          경구 등 투여 시 전신 순환에 도달하는 약물 비율(0~1). 정맥 투여를 100% 기준으로 비교합니다.
+        </div>
+      </div>
+      <div class="note">
+        <strong style="color: var(--text);">참고</strong><br />
+        실제 임상·연구에서는 단위(h vs day, mg vs ng/mL), 투여 경로, 채혈 설계에 따라 해석이 달라집니다. 이 페이지는 개념 소개용입니다.
+      </div>
+    </section>
+
+    <section id="clinical">
+      <h2>임상약리와의 연결</h2>
+      <p>약동학은 다음과 같은 질문에 답하는 도구로 쓰입니다.</p>
+      <ul>
+        <li>용량을 올리거나 줄일 때 혈중 농도가 어떻게 변할까?</li>
+        <li>신장·간 기능이 떨어진 환자에서 용량 조절이 필요한가?</li>
+        <li>다른 약물과 병용 시 농도가 올라가거나 떨어질 위험이 있는가?</li>
+      </ul>
+      <p style="margin-top: 1rem;">
+        집단 약동학(population PK)은 여러 사람의 데이터를 모아 <strong>개인차(공변량)</strong>를 반영한 모델을 세우고, 용량 설계·임상시험 해석에 활용합니다.
+      </p>
+    </section>
+
+    <footer>
+      교육·소개용 원페이지 예시 · 내용은 일반적인 설명이며 특정 약물·진료 지침을 대신하지 않습니다.
+    </footer>
+  </div>
+</body>
+</html>
